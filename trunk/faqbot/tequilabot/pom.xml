@@ -45,7 +45,6 @@
   </repositories>
 
   <build>
-  	<testSourceDirectory>..\tequilabot</testSourceDirectory>
 	<resources>
 	   <resource>
 		<targetPath>org/codehaus/faqbot/res</targetPath>

@@ -3,9 +3,6 @@
 	<classpathentry kind="src" path="tequilabot/src/main/java"/>
 	<classpathentry output="tequilabot/target/test-classes" kind="src" path="tequilabot/src/test/java"/>
 	<classpathentry sourcepath="JRE_SRC" kind="var" path="JRE_LIB"/>
-	<classpathentry kind="lib" path="C:/maven2repository/junit/junit/3.8.1/junit-3.8.1.jar"/>
-	<classpathentry kind="lib" path="C:/maven2repository/log4j/log4j/1.2.8/log4j-1.2.8.jar"/>
-	<classpathentry sourcepath="C:/Google/ALICE/ProgramD/programd-4.5-src.zip" kind="lib" path="C:/maven2repository/aitools/programd/4.5/programd-4.5.jar"/>
 	<classpathentry kind="lib" path="tequilabot/lib/programd-main.jar"/>
 	<classpathentry kind="lib" path="tequilabot/lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="tequilabot/lib/daim.jar"/>
@@ -13,5 +10,8 @@
 	<classpathentry kind="lib" path="tequilabot/lib/log4j-1.2.8.jar"/>
 	<classpathentry kind="lib" path="tequilabot/lib/programd-rhino.jar"/>
 	<classpathentry kind="lib" path="C:/Google/xwiki-package-jetty-0-9-840/xwiki/webapps/xwiki/WEB-INF/lib/xerces-2.4.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.8/log4j-1.2.8.jar"/>
+	<classpathentry kind="var" path="M2_REPO/aitools/programd/4.5/programd-4.5.jar"/>
 	<classpathentry kind="output" path="tequilabot/target/classes"/>
 </classpath>

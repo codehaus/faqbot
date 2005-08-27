@@ -113,23 +113,4 @@ public class XWikiCore
     	return core.getResponse(input, hostName, botName);
     }
     
-    /**
-     * Testing shell
-     * 
-     * @param args the strings to process and output to stdout
-     */
-    public static void main( String[] args )
-    {
-    	XWikiFaqbot me = new XWikiFaqbot();
-        System.out.println( "Hello World!" );
-        try{
-        	for(int i = 0; i < args.length; i++)
-        		System.out.println(me.processQuery(args[i]));
-        }
-        catch(Exception e){
-        	System.out.println(e.toString());
-        	e.printStackTrace();
-        }
-        System.exit(0);
-    }
 }

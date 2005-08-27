@@ -900,3 +900,145 @@
 [2005-08-12 18:10:34] Finished shutting down ManagedProcesses.
 [2005-08-12 18:10:34] PredicateMaster saving all cached predicates (69)
 [2005-08-12 18:10:34] Shutdown complete.
+[2005-08-12 18:59:28] Starting Program D version 4.5.
+[2005-08-12 18:59:28] Using Java VM 1.5.0_04-b05 from Sun Microsystems Inc.
+[2005-08-12 18:59:28] On Windows XP version 5.1 (x86) with 1 processor(s) available.
+[2005-08-12 18:59:28] 21.6 MB of memory free out of 53.5 MB total in JVM.  Configured maximum: 63.6 MB.
+[2005-08-12 18:59:28] Predicates with no values defined will return: "undefined".
+[2005-08-12 18:59:28] Initializing FlatFileMultiplexor.
+[2005-08-12 18:59:28] Starting up the Graphmaster.
+[2005-08-12 18:59:28] Configuring bot "yourbot".
+[2005-08-12 18:59:28] Loaded 287 input substitutions.
+[2005-08-12 18:59:28] Loaded 19 gender substitutions.
+[2005-08-12 18:59:28] Loaded 9 person substitutions.
+[2005-08-12 18:59:28] Loaded 60 person2 substitutions.
+[2005-08-12 18:59:28] Loaded 4 sentence-splitters.
+[2005-08-12 18:59:29] 5000 categories loaded so far.
+[2005-08-12 18:59:29] 10000 categories loaded so far.
+[2005-08-12 18:59:30] 15000 categories loaded so far.
+[2005-08-12 18:59:31] 20000 categories loaded so far.
+[2005-08-12 18:59:32] 25000 categories loaded so far.
+[2005-08-12 18:59:33] 30000 categories loaded so far.
+[2005-08-12 18:59:34] 35000 categories loaded so far.
+[2005-08-12 18:59:35] 40000 categories loaded so far.
+[2005-08-12 18:59:36] Error parsing "file:/C:/eclipse-config/workspace/faqbot/tequilabot/target/classes/org/codehaus/faqbot/res/AIML/Badanswer.aiml": cvc-pattern-valid: Value '2,*' is not facet-valid with respect to pattern '\d+|\d+,\d+' for type 'null'.
+[2005-08-12 18:59:37] 45000 categories loaded so far.
+[2005-08-12 18:59:37] 45000 categories loaded so far.
+[2005-08-12 18:59:37] 45000 categories loaded so far.
+[2005-08-12 18:59:37] 45000 categories loaded so far.
+[2005-08-12 18:59:37] 45990 unique categories loaded in 9.532 seconds.
+[2005-08-12 18:59:37] 601 path-identical categories were encountered, and handled according to the COMBINE merge policy.
+[2005-08-12 18:59:37] The AIML Watcher is not active.
+[2005-08-12 18:59:37] JavaScript interpreter not started.
+[2005-08-12 18:59:38] tnasty> CONNECT : * : XWiki : yourbot
+[2005-08-12 18:59:38] Match: CONNECT : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\Pickup.aiml, ./testing/AIML.aiml"
+[2005-08-12 18:59:38] Symbolic Reduction:
+[2005-08-12 18:59:38] tnasty> SET PREDICATES OM : * : XWiki : yourbot
+[2005-08-12 18:59:38] Match: SET PREDICATES OM : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\Predicates.aiml"
+[2005-08-12 18:59:38] Response 1 in 47 ms. (Average: 47.0 ms.)
+[2005-08-12 18:59:38] tnasty> hello : Have we started yet : XWiki : yourbot
+[2005-08-12 18:59:38] Match: HELLO : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\Salutations.aiml"
+[2005-08-12 18:59:38] Response 2 in 0 ms. (Average: 23.5 ms.)
+[2005-08-12 18:59:38] tnasty> What is XWiki? : Hi there : XWiki : yourbot
+[2005-08-12 18:59:38] Match: WHAT IS XWIKI : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\FAQ.aiml"
+[2005-08-12 18:59:38] Symbolic Reduction:
+[2005-08-12 18:59:38] tnasty> XWIKI : Hi there : XWiki : yourbot
+[2005-08-12 18:59:38] Match: XWIKI : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\FAQ.aiml"
+[2005-08-12 18:59:38] Response 3 in 0 ms. (Average: 15.666667 ms.)
+[2005-08-12 18:59:38] tnasty> How do you do? : In addition to regular wiki functionality it also has an integrated database the benefits of a programming language and multi language support : XWiki : yourbot
+[2005-08-12 18:59:38] Match: HOW DO YOU DO : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\Atomic.aiml"
+[2005-08-12 18:59:38] Response 4 in 0 ms. (Average: 11.75 ms.)
+[2005-08-12 18:59:38] tnasty> learn The answer to the question of life the universe and everything resp forty-two : I am very well how are you : XWiki : yourbot
+[2005-08-12 18:59:38] Match: LEARN * : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\Reductions.aiml"
+[2005-08-12 18:59:38] Symbolic Reduction:
+[2005-08-12 18:59:38] tnasty> can you learn : I am very well how are you : XWiki : yourbot
+[2005-08-12 18:59:38] Match: CAN YOU LEARN : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\Bot.aiml"
+[2005-08-12 18:59:38] Response 5 in 0 ms. (Average: 9.4 ms.)
+[2005-08-12 18:59:38] tnasty> The answer to the question of life the universe and everything : The more people talk to me the smarter I become : XWiki : yourbot
+[2005-08-12 18:59:38] Match: THE ANSWER TO THE QUESTION OF LIFE THE UNIVERSE AND EVERYTHING : * : * : yourbot
+[2005-08-12 18:59:38] Filename: "./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml"
+[2005-08-12 18:59:38] Response 6 in 0 ms. (Average: 7.8333335 ms.)
+[2005-08-12 18:59:38] Program D is shutting down.
+[2005-08-12 18:59:38] Shutting down all ManagedProcesses.
+[2005-08-12 18:59:38] Finished shutting down ManagedProcesses.
+[2005-08-12 18:59:38] PredicateMaster saving all cached predicates (69)
+[2005-08-12 18:59:38] Shutdown complete.
+[2005-08-12 19:00:37] Starting Program D version 4.5.
+[2005-08-12 19:00:37] Using Java VM 1.5.0_04-b05 from Sun Microsystems Inc.
+[2005-08-12 19:00:37] On Windows XP version 5.1 (x86) with 1 processor(s) available.
+[2005-08-12 19:00:37] 21.1 MB of memory free out of 52.7 MB total in JVM.  Configured maximum: 63.6 MB.
+[2005-08-12 19:00:37] Predicates with no values defined will return: "undefined".
+[2005-08-12 19:00:37] Initializing FlatFileMultiplexor.
+[2005-08-12 19:00:37] Starting up the Graphmaster.
+[2005-08-12 19:00:37] Configuring bot "yourbot".
+[2005-08-12 19:00:37] Loaded 287 input substitutions.
+[2005-08-12 19:00:37] Loaded 19 gender substitutions.
+[2005-08-12 19:00:37] Loaded 9 person substitutions.
+[2005-08-12 19:00:37] Loaded 60 person2 substitutions.
+[2005-08-12 19:00:37] Loaded 4 sentence-splitters.
+[2005-08-12 19:00:38] 5000 categories loaded so far.
+[2005-08-12 19:00:39] 10000 categories loaded so far.
+[2005-08-12 19:00:40] 15000 categories loaded so far.
+[2005-08-12 19:00:41] 20000 categories loaded so far.
+[2005-08-12 19:00:42] 25000 categories loaded so far.
+[2005-08-12 19:00:43] 30000 categories loaded so far.
+[2005-08-12 19:00:44] 35000 categories loaded so far.
+[2005-08-12 19:00:45] 40000 categories loaded so far.
+[2005-08-12 19:00:45] Error parsing "file:/C:/eclipse-config/workspace/faqbot/tequilabot/target/classes/org/codehaus/faqbot/res/AIML/Badanswer.aiml": cvc-pattern-valid: Value '2,*' is not facet-valid with respect to pattern '\d+|\d+,\d+' for type 'null'.
+[2005-08-12 19:00:47] 45000 categories loaded so far.
+[2005-08-12 19:00:47] 45000 categories loaded so far.
+[2005-08-12 19:00:47] 45000 categories loaded so far.
+[2005-08-12 19:00:47] 45000 categories loaded so far.
+[2005-08-12 19:00:47] 45990 unique categories loaded in 10.0 seconds.
+[2005-08-12 19:00:47] 602 path-identical categories were encountered, and handled according to the COMBINE merge policy.
+[2005-08-12 19:00:47] The AIML Watcher is not active.
+[2005-08-12 19:00:47] JavaScript interpreter not started.
+[2005-08-12 19:00:48] tnasty> CONNECT : * : XWiki : yourbot
+[2005-08-12 19:00:48] Match: CONNECT : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\Pickup.aiml, ./testing/AIML.aiml"
+[2005-08-12 19:00:48] Symbolic Reduction:
+[2005-08-12 19:00:48] tnasty> SET PREDICATES OM : * : XWiki : yourbot
+[2005-08-12 19:00:48] Match: SET PREDICATES OM : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\Predicates.aiml"
+[2005-08-12 19:00:48] Response 1 in 0 ms. (Average: 0.0 ms.)
+[2005-08-12 19:00:48] tnasty> hello : Are you there : XWiki : yourbot
+[2005-08-12 19:00:48] Match: HELLO : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\Salutations.aiml"
+[2005-08-12 19:00:48] Response 2 in 0 ms. (Average: 0.0 ms.)
+[2005-08-12 19:00:48] tnasty> What is XWiki? : Hi there : XWiki : yourbot
+[2005-08-12 19:00:48] Match: WHAT IS XWIKI : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\FAQ.aiml"
+[2005-08-12 19:00:48] Symbolic Reduction:
+[2005-08-12 19:00:48] tnasty> XWIKI : Hi there : XWiki : yourbot
+[2005-08-12 19:00:48] Match: XWIKI : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\FAQ.aiml"
+[2005-08-12 19:00:48] Response 3 in 16 ms. (Average: 5.3333335 ms.)
+[2005-08-12 19:00:48] tnasty> How do you do? : In addition to regular wiki functionality it also has an integrated database the benefits of a programming language and multi language support : XWiki : yourbot
+[2005-08-12 19:00:48] Match: HOW DO YOU DO : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\Atomic.aiml"
+[2005-08-12 19:00:48] Response 4 in 0 ms. (Average: 4.0 ms.)
+[2005-08-12 19:00:48] tnasty> learn The answer to the question of life the universe and everything resp forty-two : I am very well how are you : XWiki : yourbot
+[2005-08-12 19:00:48] Match: LEARN * : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\Reductions.aiml"
+[2005-08-12 19:00:48] Symbolic Reduction:
+[2005-08-12 19:00:48] tnasty> can you learn : I am very well how are you : XWiki : yourbot
+[2005-08-12 19:00:48] Match: CAN YOU LEARN : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\Bot.aiml"
+[2005-08-12 19:00:48] Response 5 in 0 ms. (Average: 3.2 ms.)
+[2005-08-12 19:00:48] tnasty> The answer to the question of life the universe and everything : The more people talk to me the smarter I become : XWiki : yourbot
+[2005-08-12 19:00:48] Match: THE ANSWER TO THE QUESTION OF LIFE THE UNIVERSE AND EVERYTHING : * : * : yourbot
+[2005-08-12 19:00:48] Filename: "./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml, ./aiml/\User.aiml"
+[2005-08-12 19:00:48] Response 6 in 0 ms. (Average: 2.6666667 ms.)
+[2005-08-12 19:00:48] Program D is shutting down.
+[2005-08-12 19:00:48] Shutting down all ManagedProcesses.
+[2005-08-12 19:00:48] Finished shutting down ManagedProcesses.
+[2005-08-12 19:00:48] PredicateMaster saving all cached predicates (69)
+[2005-08-12 19:00:48] Shutdown complete.
