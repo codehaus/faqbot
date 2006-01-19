@@ -4,10 +4,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.codehaus.faqbot</groupId>
-  <artifactId>faqbot</artifactId>
+  <artifactId>faqbot-components</artifactId>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>Faqbot</name>
+  <version>0.2-SNAPSHOT</version>
+  <name>FAQBot</name>
   <description>The FAQBot project aims to replace the traditional FAQ by providing a natural language interface and an organized structure to existing knowledge bases. More specifically, it allows users to ask questions by chatting in natural dialogue; the bot will search its knowledge base for relevant information and present it to the user in an organized manner.</description>
   <url>http://faqbot.codehaus.org</url>
   <issueManagement>
@@ -83,8 +83,9 @@
         <version>3.8.1</version>
         <scope>test</scope>
       </dependency>
+      <!-- TODO: Not available in Maven repo, check if License allows -->
   	  <dependency>
-        <groupId>aitools</groupId>
+        <groupId>org.aitools</groupId>
         <artifactId>programd</artifactId>
         <version>4.5</version>
       </dependency>
@@ -124,7 +125,7 @@
   </distributionManagement-->
    <modules>
     <module>faqbot-core</module>
-    <module>faqbot-site</module>
+    <!--module>faqbot-site</module-->
     <module>faqbot-ui</module>
     <module>faqbot-xwiki-engine</module>
     <module>faqbot-xwiki-macros</module>
