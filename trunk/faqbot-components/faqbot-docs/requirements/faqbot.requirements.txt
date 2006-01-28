@@ -1,0 +1,127 @@
+
+0)  Overview
+============
+
+Outline requirements for FAQBot briefly. 
+
+1)  Extensible Framework for building Bots.
+2)  Bot should be able to diagnose User Query and respond appropriately.
+2)  Bot should be able to learn new responses and generate AIML sets.
+3)  Bot should be able to listen and build its knowledge base from variety of 
+    sources
+    3-1)  Mailing Lists
+    3-2)  IRC 
+    3-3)  ICQ
+    3-4)  XWiki
+    3-5)  AIM
+    
+
+
+
+
+Ideas & Scope
+-------------
+1)  Start with answering FAQs. 
+
+2)  Extend to be able to analyze StackTrace logs and bind them to a context to
+    search for a answer to a problem.
+
+    For example: When I run mvn site:site, I get this StackTrace. 
+    java.lang.ClassCastException(MyClass.java:102)
+    
+    The Exception in the above example is bound to 'mvn site:site' invocation 
+    and should be evaluated in that context. 
+
+    So basically, there are 2 (possibly 3 inputs) to look for a resolution: 
+    a)  Execution context (what was the user doing when the error occurred)
+    b)  Stacktrace or error encountered
+    c)  Any other relevant information (TODO: Need to think more on this)
+
+    
+3)  Investigate if we can re-use the following tools/libs
+    a)  Generic Log Adapter from Eclipse TPTP
+    b)  ANTLR for lexical analysis
+
+
+4)  Have the Bot as an Eclipse Plugin so the user can get answers from within 
+    Eclipse.
+    There should be a separate FAQBot perspective that allows user to do 
+    interact with the Bot in different ways. Ask a query or make the Bot learn
+    new responses.
+
+
+5)  Have the processor read 
+    a)  Mailing list archives 
+    b)  Wiki markup 
+    c)  .fml files 
+    d)  .apt files 
+    and generate AIML sets (Is this do'able?)
+    
+    
+
+
+
+Functional Regression testing 
+------------------------------
+http://www.openqa.org/selenium/
+
+
+
+Resources
+=========
+
+[See my Social bookmark for more Natural Language Processing resources]
+
+[Chatterbean]
+http://chatterbean.bitoflife.cjb.net/
+
+
+[Eclipse Test and Performance Tools Platform]
+http://www.eclipse.org/tptp/home/downloads/quicktour/v41/quick_tour.html
+
+[Webbook Natural Language processing with Java]
+http://www.markwatson.com/opencontent/
+
+[Natural Language Parser]
+http://cslu.cse.ogi.edu/HLTsurvey/ch13node6.html
+
+
+[Artificial Intelligence Research]
+http://www.a-i.com/
+
+[Zabaware]
+http://www.zabaware.com/
+
+[Eclipse Communication Framework]
+http://www.eclipse.org/ecf/
+
+
+[http://blogs.codehaus.org/people/vmassol/archives/think_tank.html#000670_faq_bots]
+FAQBots
+-------
+The idea that I had at that time was to use it as a live FAQ answerer for the Cactus project. I never came to do it though... need more time...
+	
+I've been reminded of this idea by some posts on the Cactus mailing list. I'd venture that at least 50-70% of the the questions asked have already been answered in some form in the past, are available in the Cactus documentation or are easy to answer by some generic rule. I think it could be fun to train a bot to answer these questions. For those that the bot couldn't answer, the user would be redirected to the mailing list where Cactus experts would find the answer and train the bot so that it gets better next time.
+
+It should be possible to have rules that would generate the following kind of dialogue:
+
+    * [user] I'm getting an error when running Cactus tests
+    * [bot] Is the error happening on the client side or the server side?
+    * [user] I don't know
+    * [bot] Could you turn logging on and see if the error appears in the client side log or the server side log?
+    * [user] how do I turn logging on?
+    * [bot] See the Cactus logging configuration page
+    * [user] It's happening on the client side
+    * [bot] Is the error hapenning during the HTTP connection?
+    * [user] yes
+    * etc...
+
+It would be cool! My only worry is that it would take too long to create the AIML files. But maybe not. Any experience?
+
+What would be even better would be that the bot would learn from the mailing list posts itself. However, that's probably science fiction at this point in time...
+
+Note: The image was borrowed from Alicebot.org
+
+[/snip]
+
+
