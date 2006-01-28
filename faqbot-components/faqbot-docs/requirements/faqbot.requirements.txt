@@ -71,6 +71,7 @@ Resources
 =========
 
 [See my Social bookmark for more Natural Language Processing resources]
+http://del.icio.us/rinkoo
 
 [Chatterbean]
 http://chatterbean.bitoflife.cjb.net/
@@ -91,6 +92,22 @@ http://www.a-i.com/
 
 [Zabaware]
 http://www.zabaware.com/
+
+[GATE - General Architecture for Text Engineering]
+http://gate.ac.uk/documentation.html
+
+[Galaxy Communicator - open source architecture for dialog systems]
+http://communicator.sourceforge.net/
+
+[AMITIES - Automated Multilingual Interaction with Information & Services]
+http://www.dcs.shef.ac.uk/nlp/amities/amities_links.htm
+
+[MIT - Spoken Languages & Artificial Intelligence Laboratory]
+http://groups.csail.mit.edu/sls/research/
+http://groups.csail.mit.edu/sls/technologies/galaxy.shtml
+
+[IBM - UIMA - Unstructured Information Management Architecture]
+http://www-128.ibm.com/developerworks/db2/downloads/uima/
 
 [Eclipse Communication Framework]
 http://www.eclipse.org/ecf/
