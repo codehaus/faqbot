@@ -129,11 +129,10 @@
     </site>
   </distributionManagement-->
    <modules>
-    <module>faqbot-core</module>
-    <!--module>faqbot-site</module-->
-    <module>faqbot-ui</module>
-    <module>faqbot-xwiki-engine</module>
-    <module>faqbot-xwiki-macros</module>
+     <module>faqbot-core</module>     
+     <module>faqbot-docs</module>
+     <!--module>faqbot-site</module-->
+    <module>faqbot-ui</module>    
   </modules>
 </project>
 
