@@ -11,7 +11,7 @@
   <artifactId>faqbot-programD</artifactId>
   <name>FAQBot ProgramD Prototype</name>
   <description>
-    Sandbox project for an ProgramD-based FAQBot prototype
+    Sandbox project for a ProgramD-based FAQBot prototype
   </description>
   <packaging>jar</packaging>
   <dependencies>
