@@ -1,5 +1,5 @@
 
-As postulated by Turing:
+As postulated by Alan Turing:
 
 An AI agent needs to have following capabilities:
 
