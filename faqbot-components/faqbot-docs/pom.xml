@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.codehaus.faqbot</groupId>
   <artifactId>faqbot-docs</artifactId>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
   <version>0.2-SNAPSHOT</version>
   <name>FAQBot Documentation</name>
   <description>The FAQBot documentation project aims to consolidate the Requirements, Design and Architecture documents for FAQBot project.</description>
