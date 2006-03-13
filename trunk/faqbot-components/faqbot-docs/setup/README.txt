@@ -13,8 +13,14 @@ Steps
 3)  Latest release for ProgramD can be obtained from http://www.aitools.org/
 40  After downloading these dependencies, install them in your local Maven 2 
     repository as follows.
-    * To install programd JAR in local repo execute:
-> mvn install:install-file -Dfile=programd-4.5.jar -DgroupId=org.aitools -DartifactId=programd -Dversion=4.5 -Dpackaging=jar
+
+    Note the following commands will require you to rename the JARs obtained
+    for ProgramD to reflect a Maven convention.
+    
+    * To install programd JARs in local repo execute:
+> mvn install:install-file -Dfile=programd-main-4.6.jar -DgroupId=org.aitools -DartifactId=programd-main -Dversion=4.6 -Dpackaging=jar
+
+> mvn install:install-file -Dfile=programd-rhino-4.6.jar -DgroupId=org.aitools -DartifactId=programd-rhino -Dversion=4.6 -Dpackaging=jar
 
 
 (See http://maven.apache.org/guides/mini/guide-installing-3rd-party-jars.html)
@@ -22,4 +28,3 @@ Steps
 5)  You will need some AIML sets to get started with ProgramD. Some AIML sets 
     can be obtained from from http://aitools.org/aiml-sets/
 
- 
