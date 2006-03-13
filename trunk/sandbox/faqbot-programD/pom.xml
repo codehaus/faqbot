@@ -13,7 +13,8 @@
   <description>
     Sandbox project for a ProgramD-based FAQBot prototype
   </description>
-  <packaging>jar</packaging>
+  <!--packaging>jar</packaging-->
+  <packaging>war</packaging>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -25,8 +26,13 @@
     </dependency>
     <dependency>
       <groupId>org.aitools</groupId>
-      <artifactId>programd</artifactId>
-      <version>4.5</version>
+      <artifactId>programd-main</artifactId>
+      <version>4.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aitools</groupId>
+      <artifactId>programd-rhino</artifactId>
+      <version>4.6</version>
     </dependency>
   </dependencies>
   <build>
@@ -44,6 +50,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>
