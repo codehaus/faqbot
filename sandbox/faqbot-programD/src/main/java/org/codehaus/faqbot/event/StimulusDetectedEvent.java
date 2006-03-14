@@ -23,6 +23,7 @@ import org.codehaus.faqbot.model.Stimulus;
  * Stimulus is any action by an Actor which can activate the Bot.
  * 
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
+ * $Id$
  */
 public abstract class StimulusDetectedEvent extends EventObject {
     
