@@ -20,3 +20,10 @@ Other development conventions for project FAQBot.
 5)  User @author $username and @revision $Id$ for Type headers to capture the 
     author and current revision info in a source artifact.
 
+6)  To add SVN keyword substitions on a project, right-click on a project in 
+    package explorer and choose to "Add Keywords". This pops up a dialog box to
+    that allows the user to choose a set of keywords that could be used in 
+    project source. Note we are using $Id$ as of this writing (see 5 above).
+  
+    
+
