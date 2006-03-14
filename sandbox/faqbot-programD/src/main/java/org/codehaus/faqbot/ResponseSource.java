@@ -20,6 +20,7 @@ package org.codehaus.faqbot;
  * by the FAQBot learning engine.
  * 
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
+ * @revision $revision$
  */
 public interface ResponseSource {
     
