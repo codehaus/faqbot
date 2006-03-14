@@ -1,4 +1,4 @@
-// $headURL$
+// $HeadURL$
 // $LastChangedBy$
 // $LastChangedDate$
 /**
