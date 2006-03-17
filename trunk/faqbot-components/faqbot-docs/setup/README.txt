@@ -29,6 +29,14 @@ Steps
 
 6)  Check out FAQBot project into a separate Eclipse workspace. 
 
+7)  'cd' to the 'faqbot-components' folder for the project and run the 
+    following command:
+    
+>   mvn -N install 
+
+    This installs the pom-only project in the local repository and makes it 
+    available for child modules.
+
 7)  From the command prompt, 'cd' to the root of each project and run 
 >   mvn eclipse:eclipse -Dwtpversion=1.0 
 
