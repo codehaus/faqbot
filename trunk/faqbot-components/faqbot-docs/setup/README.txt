@@ -47,3 +47,26 @@ Steps
 NOTE: As of this writing working code is under sandbox, this will be graduated 
       out to under 'faqbot-components' projects when we are ready to do a first 
       release.
+
+8)  Installing IRC listener JAR in local M2 repo.
+
+  8-1)  Download the IRC listener JAR from: 
+        http://aitools.org/downloads/#irclistener
+
+  8-2)  Extract the contents of the downloaded zip archive to a folder.
+  
+  8-3)  'cd' to the folder in (8-2) and rename pircbot.jar (under 'lib' folder)
+        to pircbot-1.4.4.jar
+
+  8-4)  Install the pircbot JAR in local M2 repo using following:
+  
+>       mvn install:install-file -Dfile=pircbot-1.4.4.jar -DgroupId=org.jibble -DartifactId=jibble-pircbot -Dversion=1.4.4 -Dpackaging=jar
+
+  8-5)  'cd' to the 'distrib' folder under the folder used in (8-2). Rename 
+        'irc-listener.jar'  to 'programD-irc-listener-1.2.1.jar'.
+  
+  8-6)  Install programD-irc-listener-1.2.1.jar in local M2 repo using: 
+  
+>       mvn install:install-file -Dfile=programD-irc-listener-1.2.1.jar -DgroupId=org.aitools -DartifactId=programD-irc-listener -Dversion=1.2.1 -Dpackaging=jar
+
+
