@@ -32,8 +32,8 @@ Steps
 7)  From the command prompt, 'cd' to the root of each project and run 
 >   mvn eclipse:eclipse -Dwtpversion=1.0 
 
-    This should generate an Eclipse project. Now refresh the projects displayed
-    in the workspace.
+    This should generate an Eclipse project. Now import the 'sandbox' folder 
+    into the workspace. This should setup the appropriate Java projects.
 
 
 NOTE: As of this writing working code is under sandbox, this will be graduated 
