@@ -87,7 +87,7 @@
   	  <dependency>
         <groupId>org.aitools</groupId>
         <artifactId>programd</artifactId>
-        <version>4.5</version>
+        <version>4.6</version>
       </dependency>
     	<dependency>
         <groupId>log4j</groupId>
