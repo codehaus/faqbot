@@ -22,8 +22,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.IFormPart;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -31,6 +31,9 @@ import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 
 /**
+ * WizardPage implementation that captures the information from the user
+ * required to create a Continuum Connection Profile.
+ * 
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
  */
 public class ConnectionProfilePage extends WizardPage {
@@ -79,32 +82,26 @@ public class ConnectionProfilePage extends WizardPage {
         gData.horizontalSpan = 2;
         link.setLayoutData (gData);
 
-        Label labelCPName = this.toolkit.createLabel (form.getBody (), "Profile Name: ");
+        this.toolkit.createLabel (form.getBody (), "Profile Name:");
         Text txtboxCPName = this.toolkit.createText (form.getBody (), "");
         txtboxCPName.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
         // provide 'hint' for textbox border rendering.
         txtboxCPName.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 
-        Label labelConnectionUrl = this.toolkit.createLabel (form.getBody (), "Server URL:");
+        this.toolkit.createLabel (form.getBody (), "Server URL:");
         Text txtboxConnectionURL = this.toolkit.createText (form.getBody (), "");
         txtboxConnectionURL.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
         txtboxConnectionURL.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 
-        Label labelUsername = this.toolkit.createLabel (form.getBody (), "Username:");
+        this.toolkit.createLabel (form.getBody (), "Username:");
         Text txtboxUsername = this.toolkit.createText (form.getBody (), "");
         txtboxUsername.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
         txtboxUsername.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 
-        Label labelPassword = this.toolkit.createLabel (form.getBody (), "Password:");
+        this.toolkit.createLabel (form.getBody (), "Password:");
         Text txtboxPassword = this.toolkit.createText (form.getBody (), "", SWT.PASSWORD);
         txtboxPassword.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
         txtboxPassword.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
-
-        // Button button = toolkit.createButton (form.getBody (), "Create
-        // Connection", SWT.NO_BACKGROUND);
-        // gData = new GridData ();
-        // gData.horizontalSpan = 2;
-        // button.setLayoutData (gData);
 
         this.toolkit.paintBordersFor (form.getBody ());
         setControl (parent);
@@ -138,6 +135,14 @@ public class ConnectionProfilePage extends WizardPage {
     @Override
     public Control getControl() {
         return super.getControl ();
+    }
+
+
+    /**
+     * @return the form
+     */
+    public ScrolledForm getForm() {
+        return form;
     }
 
 }
