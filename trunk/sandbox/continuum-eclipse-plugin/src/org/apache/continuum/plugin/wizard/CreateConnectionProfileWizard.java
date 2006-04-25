@@ -43,13 +43,13 @@ public class CreateConnectionProfileWizard extends Wizard implements INewWizard 
 
     public void addPages() {
         super.addPages ();
-        this.connectionProfilePage = new ConnectionProfilePage ("Create Continuum Connection Prrofile");
+        this.connectionProfilePage = new ConnectionProfilePage ("Create Continuum Connection Profile");
         addPage (this.connectionProfilePage);
     }
 
 
     public boolean performFinish() {
-        // TODO Auto-generated method stub
+        // Save the Connection Profile here
         return true;
     }
 
