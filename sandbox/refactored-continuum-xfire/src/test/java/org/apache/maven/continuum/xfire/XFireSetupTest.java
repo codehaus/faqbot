@@ -3,8 +3,6 @@
  */
 package org.apache.maven.continuum.xfire;
 
-import java.io.File;
-
 import org.codehaus.xfire.plexus.PlexusXFireTest;
 import org.codehaus.xfire.plexus.config.ConfigurationService;
 import org.codehaus.xfire.service.Service;
