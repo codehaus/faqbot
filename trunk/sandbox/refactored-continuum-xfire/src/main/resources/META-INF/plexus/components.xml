@@ -25,7 +25,7 @@
 					<service>
 						<name>ContinuumWebService</name>
 						<namespace>
-							http://continuum.maven.apache.org/
+							http://continuum.maven.apache.org/continuum
 						</namespace>
 						<serviceClass>
 							org.apache.maven.continuum.xfire.ContinuumWebService
