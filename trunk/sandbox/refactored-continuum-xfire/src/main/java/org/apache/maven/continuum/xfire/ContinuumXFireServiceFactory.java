@@ -3,6 +3,7 @@
  */
 package org.apache.maven.continuum.xfire;
 
+import org.apache.maven.continuum.Continuum;
 import org.codehaus.xfire.XFireFactory;
 import org.codehaus.xfire.service.Service;
 import org.codehaus.xfire.service.ServiceFactory;
@@ -31,7 +32,7 @@ public class ContinuumXFireServiceFactory {
      */
     public static void makeContinuumWebService() {
         ServiceFactory serviceFactory = new ObjectServiceFactory (XFireFactory.newInstance ().getXFire ().getTransportManager (), null);
-        Service service = serviceFactory.create (IContinuumWebService.class, CONTINUUM_SERVICE_NAME, CONTINUUM_SERVICE_NAMESPACE, null);
+        Service service = serviceFactory.create (Continuum.class, CONTINUUM_SERVICE_NAME, CONTINUUM_SERVICE_NAMESPACE, null);
         service.setProperty (ObjectInvoker.SERVICE_IMPL_CLASS, DefaultContinuumWebService.class);
     }
 
