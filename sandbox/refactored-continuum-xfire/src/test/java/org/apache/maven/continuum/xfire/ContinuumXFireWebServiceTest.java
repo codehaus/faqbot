@@ -16,21 +16,23 @@ package org.apache.maven.continuum.xfire;
  * limitations under the License.
  */
 
+import java.util.Hashtable;
+
 import org.apache.maven.continuum.AbstractContinuumTest;
 import org.apache.maven.continuum.Continuum;
-import org.codehaus.xfire.XFireFactory;
-import org.codehaus.xfire.client.XFireProxyFactory;
-import org.codehaus.xfire.service.Service;
+import org.apache.maven.continuum.model.project.Project;
+import org.apache.maven.continuum.model.project.ProjectGroup;
+import org.apache.maven.continuum.store.ContinuumStore;
 
 /**
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
  */
-public class ContinuumXFireTest extends AbstractContinuumTest {
+public class ContinuumXFireWebServiceTest extends AbstractContinuumTest {
 
     /**
      * Webservice instance to test.
      */
-    Continuum webService = null;
+    ContinuumWebService webService = null;
 
 
     /*
@@ -41,21 +43,30 @@ public class ContinuumXFireTest extends AbstractContinuumTest {
     @Override
     protected void setUp() throws Exception {
         super.setUp ();
-        Continuum continuum = (Continuum) lookup (Continuum.ROLE);
-        ContinuumXFireServiceFactory.makeContinuumWebService ();
-        Service service = XFireFactory.newInstance ().getXFire ().getServiceRegistry ().getService (ContinuumXFireServiceFactory.CONTINUUM_SERVICE_NAME);
-        // Feels like a hack, is there a better way of doing this?
-        DefaultContinuumWebService ws = (DefaultContinuumWebService) new XFireProxyFactory ().create (service, ContinuumXFireServiceFactory.CONTINUUM_SERVICE_URL);
-        ws.setContinuum (continuum);
-        webService = ws;
+        webService = (ContinuumWebService) lookup (ContinuumWebService.ROLE);
+        // FIXME: Assert that the obtained continuum service was not null.
+        assertNotNull (webService);
     }
 
 
-    public void testGetConfigurationService() {
-    // assertNotNull (webService);
-    // ConfigurationService cs = this.webService.getConfiguration ();
-    // assertNotNull (cs);
-    // System.out.print (cs.getUrl ());
+    public void testBasic() throws Exception {
+        ContinuumStore store = (ContinuumStore) lookup (ContinuumStore.ROLE);
+
+        Project project = makeStubProject ("My Project");
+
+        ProjectGroup projectGroup = getDefaultProjectGroup ();
+
+        projectGroup.addProject (project);
+
+        store.updateProjectGroup (projectGroup);
+
+        // ----------------------------------------------------------------------
+        //
+        // ----------------------------------------------------------------------
+
+        Project p = webService.getProject (project.getId ());
+        assertNotNull (p);
+
     }
 
 }
