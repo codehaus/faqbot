@@ -80,7 +80,7 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>commons-attributes-maven-plugin</artifactId>
 				<version>1.1-SNAPSHOT</version>
@@ -92,7 +92,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin -->
 		</plugins>
 	</build>
 	<repositories>
