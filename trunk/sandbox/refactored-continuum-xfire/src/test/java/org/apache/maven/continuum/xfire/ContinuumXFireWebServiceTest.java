@@ -16,10 +16,7 @@ package org.apache.maven.continuum.xfire;
  * limitations under the License.
  */
 
-import java.util.Hashtable;
-
 import org.apache.maven.continuum.AbstractContinuumTest;
-import org.apache.maven.continuum.Continuum;
 import org.apache.maven.continuum.model.project.Project;
 import org.apache.maven.continuum.model.project.ProjectGroup;
 import org.apache.maven.continuum.store.ContinuumStore;

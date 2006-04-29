@@ -1,7 +1,7 @@
 <xfire>
 	<services>
 		<service>
-			<name>Continuum</name>
+			<name>ContinuumWebService</name>
 			<namespace>urn:ContinuumWebService</namespace>
 			<soapVersion>1.1</soapVersion>
 			<encoding>wrapped</encoding>

@@ -19,7 +19,7 @@ import org.codehaus.xfire.util.dom.DOMOutHandler;
 /**
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
  */
-public class XFireMockClientTest {
+public class XFireMockClientAppTest {
 
     public static final String SERVICE_NAMESPACE = "http://xfire.codehaus.org/BookService";
 

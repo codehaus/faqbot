@@ -25,11 +25,6 @@ import org.apache.maven.continuum.security.ContinuumSecurity;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.InitializationException;
 import org.codehaus.plexus.util.dag.CycleDetectedException;
-import org.codehaus.xfire.XFireFactory;
-import org.codehaus.xfire.service.Service;
-import org.codehaus.xfire.service.ServiceFactory;
-import org.codehaus.xfire.service.binding.ObjectServiceFactory;
-import org.codehaus.xfire.service.invoker.ObjectInvoker;
 
 /**
  * Default implmentation of {@link IContinuumWebService} that uses the Continuum
