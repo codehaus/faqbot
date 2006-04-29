@@ -29,7 +29,7 @@ import org.codehaus.plexus.util.dag.CycleDetectedException;
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
  *         $revision$
  */
-public class DefaultContinuumWebService implements Continuum {
+public class DefaultContinuumWebService implements ContinuumWebService {
 
     /**
      * Wrapped up Continuum instance to delegate calls to.
