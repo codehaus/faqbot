@@ -29,7 +29,7 @@ public class XFireSetupTest extends PlexusXFireTest {
      * @throws Exception
      */
     public void testRegister() throws Exception {
-        Service service = getServiceRegistry ().getService (ContinuumXFireServiceFactory.CONTINUUM_SERVICE_NAME);
+        Service service = getServiceRegistry ().getService (ContinuumXFireServiceFactory.CONTINUUM_WEB_SERVICE_NAME);
         assertNotNull (service);
     }
 }

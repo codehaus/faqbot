@@ -1,0 +1,17 @@
+<xfire>
+	<services>
+		<service>
+			<name>ContinuumWebService</name>
+			<namespace>urn:ContinuumWebService</namespace>
+			<soapVersion>1.1</soapVersion>
+			<encoding>wrapped</encoding>
+			<use>literal</use>
+			<serviceClass>
+				org.apache.maven.continuum.xfire.ContinuumWebService
+			</serviceClass>
+			<implementationClass>
+				org.apache.maven.continuum.xfire.DefaultContinuumWebService
+			</implementationClass>
+		</service>
+	</services>
+</xfire>
