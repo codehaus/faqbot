@@ -1,2 +1,0 @@
-
-This folder contains resources required by ProgramD to work.
