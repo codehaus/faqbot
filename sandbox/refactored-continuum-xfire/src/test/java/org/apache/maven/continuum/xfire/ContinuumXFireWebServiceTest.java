@@ -17,6 +17,7 @@ package org.apache.maven.continuum.xfire;
  */
 
 import org.apache.maven.continuum.AbstractContinuumTest;
+import org.apache.maven.continuum.Continuum;
 import org.apache.maven.continuum.model.project.Project;
 import org.apache.maven.continuum.model.project.ProjectGroup;
 import org.apache.maven.continuum.store.ContinuumStore;
@@ -40,12 +41,16 @@ public class ContinuumXFireWebServiceTest extends AbstractContinuumTest {
     @Override
     protected void setUp() throws Exception {
         super.setUp ();
+        lookup (Continuum.ROLE);
         webService = (ContinuumWebService) lookup (ContinuumWebService.ROLE);
         // FIXME: Assert that the obtained continuum service was not null.
         assertNotNull (webService);
     }
 
 
+    /**
+     * @deprecated <em>Disabled</em>
+     */
     public void testBasic() throws Exception {
         ContinuumStore store = (ContinuumStore) lookup (ContinuumStore.ROLE);
 
