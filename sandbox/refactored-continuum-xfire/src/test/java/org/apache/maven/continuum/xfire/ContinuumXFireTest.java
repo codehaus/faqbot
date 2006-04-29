@@ -30,7 +30,7 @@ public class ContinuumXFireTest extends AbstractContinuumTest {
     /**
      * Webservice instance to test.
      */
-    IContinuumWebService webService = null;
+    Continuum webService = null;
 
 
     /*
@@ -45,7 +45,7 @@ public class ContinuumXFireTest extends AbstractContinuumTest {
         ContinuumXFireServiceFactory.makeContinuumWebService ();
         Service service = XFireFactory.newInstance ().getXFire ().getServiceRegistry ().getService (ContinuumXFireServiceFactory.CONTINUUM_SERVICE_NAME);
         // Feels like a hack, is there a better way of doing this?
-        DefaultContinuumWebService ws = (DefaultContinuumWebService) new XFireProxyFactory ().create (service, ContinuumXFireServiceFactory.CONTINUUM_SERVICE_URL + "Continuum");
+        DefaultContinuumWebService ws = (DefaultContinuumWebService) new XFireProxyFactory ().create (service, ContinuumXFireServiceFactory.CONTINUUM_SERVICE_URL);
         ws.setContinuum (continuum);
         webService = ws;
     }
