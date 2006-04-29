@@ -8,6 +8,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.maven.continuum.Continuum;
 import org.apache.maven.continuum.ContinuumException;
 import org.apache.maven.continuum.configuration.ConfigurationService;
@@ -20,7 +22,14 @@ import org.apache.maven.continuum.model.system.ContinuumUser;
 import org.apache.maven.continuum.model.system.UserGroup;
 import org.apache.maven.continuum.project.builder.ContinuumProjectBuildingResult;
 import org.apache.maven.continuum.security.ContinuumSecurity;
+import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
+import org.codehaus.plexus.personality.plexus.lifecycle.phase.InitializationException;
 import org.codehaus.plexus.util.dag.CycleDetectedException;
+import org.codehaus.xfire.XFireFactory;
+import org.codehaus.xfire.service.Service;
+import org.codehaus.xfire.service.ServiceFactory;
+import org.codehaus.xfire.service.binding.ObjectServiceFactory;
+import org.codehaus.xfire.service.invoker.ObjectInvoker;
 
 /**
  * Default implmentation of {@link IContinuumWebService} that uses the Continuum
@@ -29,12 +38,23 @@ import org.codehaus.plexus.util.dag.CycleDetectedException;
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
  *         $revision$
  */
-public class DefaultContinuumWebService implements ContinuumWebService {
+public class DefaultContinuumWebService implements ContinuumWebService, Initializable {
+
+    private static final Log log = LogFactory.getLog (DefaultContinuumWebService.class);
 
     /**
      * Wrapped up Continuum instance to delegate calls to.
      */
     private Continuum continuum;
+
+
+    public void initialize() throws InitializationException {
+        if (log.isInfoEnabled ())
+            log.info ("initializing Continuum Web Service...");
+        ContinuumXFireServiceFactory.createContinuumWebService ();
+        if (log.isInfoEnabled ())
+            log.info ("... initialized!");
+    }
 
 
     /**

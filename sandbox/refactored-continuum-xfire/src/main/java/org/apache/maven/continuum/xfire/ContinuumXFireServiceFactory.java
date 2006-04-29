@@ -3,7 +3,6 @@
  */
 package org.apache.maven.continuum.xfire;
 
-import org.apache.maven.continuum.Continuum;
 import org.codehaus.xfire.XFireFactory;
 import org.codehaus.xfire.service.Service;
 import org.codehaus.xfire.service.ServiceFactory;
@@ -17,13 +16,22 @@ import org.codehaus.xfire.service.invoker.ObjectInvoker;
  */
 public class ContinuumXFireServiceFactory {
 
-    public static final String CONTINUUM_SERVICE_NAME = "Continuum";
+    /**
+     * @deprecated <em>Experimental</em>
+     */
+    private static final String SYS_PROP_XFIRE_CONFIG = "xfire.config";
 
-    public static final String CONTINUUM_SERVICE_NAMESPACE = "http://continuum.maven.apache.org/";
+    /**
+     * @deprecated <em>Experimental</em>
+     */
+    private static final String CONTINUUM_WEB_SERVICE_CONFIG_XML = "/org/apache/maven/continuum/xfire/services/services.xml";
 
-    public static final String CONTINUUM_SERVICE_URL = "http://localhost:8081/continuumws/continuum/";
+    public static final String CONTINUUM_WEB_SERVICE_NAME = "ContinuumWebService"; // .class.getSimpleName
+                                                                                    // ();
 
-    private static XFireFactory sf = null;
+    public static final String CONTINUUM_WEB_SERVICE_NAMESPACE = "http://continuum.maven.apache.org/";
+
+    public static final String CONTINUUM_WEB_SERVICE_URL = "http://localhost:8081/continuumws/";
 
 
     /**
@@ -32,25 +40,13 @@ public class ContinuumXFireServiceFactory {
      * @return an instance of {@link IContinuumWebService} to be exposed to
      *         clients.
      */
-    public static void makeContinuumWebService() {
+    public static void createContinuumWebService() {
+        // System.setProperty (SYS_PROP_XFIRE_CONFIG,
+        // CONTINUUM_WEB_SERVICE_CONFIG_XML);
         XFireFactory xfireFactory = XFireFactory.newInstance ();
         ServiceFactory serviceFactory = new ObjectServiceFactory (xfireFactory.getXFire ().getTransportManager (), null);
-        Service service = serviceFactory.create (Continuum.class, CONTINUUM_SERVICE_NAME, CONTINUUM_SERVICE_NAMESPACE, null);
+        Service service = serviceFactory.create (ContinuumWebService.class, CONTINUUM_WEB_SERVICE_NAME, CONTINUUM_WEB_SERVICE_NAMESPACE, null);
         service.setProperty (ObjectInvoker.SERVICE_IMPL_CLASS, DefaultContinuumWebService.class);
-        sf = xfireFactory;
-    }
-
-
-    /**
-     * Returns the instance of {@link ServiceFactory} that was used to create
-     * and register the {@link Continuum} service.
-     * 
-     * @return
-     */
-    public static XFireFactory getXFireFactory() {
-        if (null == sf)
-            throw new IllegalStateException ("XFire Service Factory not yet initialized.");
-        return sf;
     }
 
 }
