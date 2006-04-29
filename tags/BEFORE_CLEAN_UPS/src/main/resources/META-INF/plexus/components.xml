@@ -1,0 +1,13 @@
+<component-set>
+  <components>
+    <component>
+      <role>org.apache.maven.continuum.xfire.ContinuumWebService</role>
+      <implementation>org.apache.maven.continuum.xfire.DefaultContinuumWebService</implementation>
+      <requirements>
+        <requirement>
+          <role>org.apache.maven.continuum.Continuum</role>
+        </requirement>        
+      </requirements>
+    </component>    
+  </components>
+</component-set>
