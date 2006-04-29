@@ -18,31 +18,44 @@ package org.apache.maven.continuum.xfire;
 
 import org.apache.maven.continuum.AbstractContinuumTest;
 import org.apache.maven.continuum.Continuum;
-import org.codehaus.plexus.taskqueue.TaskQueue;
-import org.codehaus.plexus.taskqueue.execution.TaskQueueExecutor;
+import org.codehaus.xfire.XFireFactory;
+import org.codehaus.xfire.client.XFireProxyFactory;
+import org.codehaus.xfire.service.Service;
 
 /**
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
  */
 public class ContinuumXFireTest extends AbstractContinuumTest {
 
-    public void testContinuumConfiguration() throws Exception {
-        lookup (Continuum.ROLE);
+    /**
+     * Webservice instance to test.
+     */
+    IContinuumWebService webService = null;
+
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.maven.continuum.AbstractContinuumTest#setUp()
+     */
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp ();
+        Continuum continuum = (Continuum) lookup (Continuum.ROLE);
+        ContinuumXFireServiceFactory.makeContinuumWebService ();
+        Service service = XFireFactory.newInstance ().getXFire ().getServiceRegistry ().getService (ContinuumXFireServiceFactory.CONTINUUM_SERVICE_NAME);
+        // Feels like a hack, is there a better way of doing this?
+        DefaultContinuumWebService ws = (DefaultContinuumWebService) new XFireProxyFactory ().create (service, ContinuumXFireServiceFactory.CONTINUUM_SERVICE_URL + "Continuum");
+        ws.setContinuum (continuum);
+        webService = ws;
     }
 
 
-    public void testLookups() throws Exception {
-        Object o = lookup (TaskQueue.ROLE, "build-project");
-        assertNotNull (o);
-
-        o = lookup (TaskQueue.ROLE, "check-out-project");
-        assertNotNull (o);
-
-        o = lookup (TaskQueueExecutor.ROLE, "build-project");
-        assertNotNull (o);
-
-        o = lookup (TaskQueueExecutor.ROLE, "check-out-project");
-        assertNotNull (o);
+    public void testGetConfigurationService() {
+    // assertNotNull (webService);
+    // ConfigurationService cs = this.webService.getConfiguration ();
+    // assertNotNull (cs);
+    // System.out.print (cs.getUrl ());
     }
 
 }
