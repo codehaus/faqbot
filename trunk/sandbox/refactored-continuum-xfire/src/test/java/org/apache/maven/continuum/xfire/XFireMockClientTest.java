@@ -39,9 +39,9 @@ public class XFireMockClientTest {
 
         xfire.addOutHandler (new WSS4JOutHandler (properties));
 
-        Service serviceModel = new ObjectServiceFactory ().create (Continuum.class, "Continuum", SERVICE_NAMESPACE, null);
+        Service serviceModel = new ObjectServiceFactory ().create (ContinuumWebService.class, "Continuum", SERVICE_NAMESPACE, null);
 
-        Continuum service = (Continuum) new XFireProxyFactory ().create (serviceModel, SERVICE_URL + serviceName);
+        ContinuumWebService service = (ContinuumWebService) new XFireProxyFactory ().create (serviceModel, SERVICE_URL + serviceName);
 
         System.out.println ("Looking for isbn : 0123456789 ....");
 
