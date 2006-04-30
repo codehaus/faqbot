@@ -10,23 +10,6 @@
 	<version>1.0.4-SNAPSHOT</version>
 	<name>Continuum XFire Interface</name>
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.maven.continuum</groupId>
-			<artifactId>continuum-model</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.continuum</groupId>
-			<artifactId>continuum-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.continuum</groupId>
-			<artifactId>continuum-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<!-- XFire dependencies -->
 		<dependency>
 			<groupId>org.codehaus.xfire</groupId>
@@ -55,11 +38,34 @@
 			<artifactId>servlet-api</artifactId>
 			<version>2.3</version>
 			<scope>provided</scope>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.continuum</groupId>
+			<artifactId>continuum-test</artifactId>
+			<version>1.0.4-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.continuum</groupId>
+			<artifactId>continuum-model</artifactId>
+			<version>1.0.4-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.continuum</groupId>
+			<artifactId>continuum-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.continuum</groupId>
+			<artifactId>continuum-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-servlet</artifactId>
-			<version>1.0-beta-3</version>
+			<artifactId>plexus-utils</artifactId>			
 		</dependency>
 	</dependencies>
 	<build>
