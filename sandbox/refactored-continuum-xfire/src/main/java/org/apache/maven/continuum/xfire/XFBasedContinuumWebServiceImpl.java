@@ -27,6 +27,7 @@ import org.codehaus.plexus.util.dag.CycleDetectedException;
  * Concrete implementation that services the WebService requests.
  * 
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
+ * @deprecated <em>Experimental</em>
  */
 public class XFBasedContinuumWebServiceImpl implements XFBasedContinuumWebService {
 
