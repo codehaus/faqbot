@@ -48,9 +48,6 @@ public class ContinuumXFireWebServiceTest extends AbstractContinuumTest {
     }
 
 
-    /**
-     * @deprecated <em>Disabled</em>
-     */
     public void testBasic() throws Exception {
         ContinuumStore store = (ContinuumStore) lookup (ContinuumStore.ROLE);
 

@@ -10,7 +10,7 @@
 			<requirements>
 				<requirement>
 					<role>org.apache.maven.continuum.Continuum</role>
-				</requirement>
+				</requirement>				
 			</requirements>
 		</component>
 		<component>
@@ -41,5 +41,6 @@
 				</requirement>
 			</requirements>
 		</component>
+
 	</components>
 </component-set>
