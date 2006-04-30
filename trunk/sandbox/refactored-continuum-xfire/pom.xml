@@ -20,6 +20,21 @@
 			<groupId>org.codehaus.xfire</groupId>
 			<artifactId>xfire-plexus</artifactId>
 			<version>1.1-RC1</version>
+			<!-- XFire is using old plexus dependencies that cause probs with tests -->
+			<exclusions>
+				<exclusion>
+					<groupId>plexus</groupId>
+					<artifactId>plexus-servlet</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>plexus</groupId>
+					<artifactId>plexus-container-default</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>plexus</groupId>
+					<artifactId>plexus-utils</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -65,7 +80,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-utils</artifactId>			
+			<artifactId>plexus-utils</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
