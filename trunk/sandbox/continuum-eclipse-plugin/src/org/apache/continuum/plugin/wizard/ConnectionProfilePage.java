@@ -15,44 +15,45 @@
  */
 package org.apache.continuum.plugin.wizard;
 
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.apache.continuum.plugin.model.ConnectionProfileData;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.IFormPart;
-import org.eclipse.ui.forms.events.HyperlinkAdapter;
-import org.eclipse.ui.forms.events.HyperlinkEvent;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.Hyperlink;
-import org.eclipse.ui.forms.widgets.ScrolledForm;
 
 /**
  * WizardPage implementation that captures the information from the user
  * required to create a Continuum Connection Profile.
+ * <p>
+ * TODO: Review access on setters.
  * 
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
+ * @since 1.0
  */
 public class ConnectionProfilePage extends WizardPage {
 
     /**
-     * Toolkit reponsible for adapting SWT control behaviour to work in Eclipse
-     * Forms.
+     * Data model that holds Connection Profile preferences.
      */
-    private FormToolkit toolkit;
+    private ConnectionProfileData connectionProfileData;
 
-    /**
-     * ScrolledForm is a control that is capable of scrolling an instance of the
-     * Form class.
-     */
-    private ScrolledForm form;
+    private Text profileName;
+
+    private Text serverLocation;
+
+    private Text username;
+
+    private Text password;
 
 
-    protected ConnectionProfilePage(String pageName) {
+    protected ConnectionProfilePage(String pageName, ConnectionProfileData connectionProfileData) {
         super (pageName);
+        this.connectionProfileData = connectionProfileData;
     }
 
 
@@ -62,67 +63,76 @@ public class ConnectionProfilePage extends WizardPage {
      * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
      */
     public void createControl(Composite parent) {
-        this.toolkit = new FormToolkit (parent.getDisplay ());
-        this.form = this.toolkit.createScrolledForm (parent);
-        this.form.setText ("Create new Continuum Connection");
+        FormLayout layout = new FormLayout ();
 
-        // layout elements of the form here
-        GridLayout layout = new GridLayout ();
-        form.getBody ().setLayout (layout);
-        Hyperlink link = this.toolkit.createHyperlink (form.getBody (), "Click here to see how to use this wizard", SWT.WRAP);
-        link.addHyperlinkListener (new HyperlinkAdapter () {
+        Composite container = new Composite (parent, SWT.NULL);
+        container.setLayout (layout);
 
-            public void linkActivated(HyperlinkEvent e) {
-                MessageDialog.openInformation (form.getBody ().getShell (), "Not yet implemented", "Help text is not available yet!");
-            }
+        FormData data = new FormData ();
+        data.top = new FormAttachment (10, 10);
+        data.width = 100;
+        Label label = new Label (container, SWT.NULL);
+        label.setText ("Profile Name: ");
+        label.setLayoutData (data);
 
-        });
-        layout.numColumns = 2;
-        GridData gData = new GridData ();
-        gData.horizontalSpan = 2;
-        link.setLayoutData (gData);
+        data = new FormData ();
+        data.top = new FormAttachment (10, 10);
+        data.left = new FormAttachment (label, 10);
+        data.width = 300;
+        this.profileName = new Text (container, SWT.BORDER);
+        this.profileName.setLayoutData (data);
 
-        this.toolkit.createLabel (form.getBody (), "Profile Name:");
-        Text txtboxCPName = this.toolkit.createText (form.getBody (), "");
-        txtboxCPName.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
-        // provide 'hint' for textbox border rendering.
-        txtboxCPName.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
+        data = new FormData ();
+        data.top = new FormAttachment (this.profileName, 10);
+        data.width = 100;
+        label = new Label (container, SWT.NULL);
+        label.setText ("Server Location: ");
+        label.setLayoutData (data);
 
-        this.toolkit.createLabel (form.getBody (), "Server URL:");
-        Text txtboxConnectionURL = this.toolkit.createText (form.getBody (), "");
-        txtboxConnectionURL.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
-        txtboxConnectionURL.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
+        data = new FormData ();
+        data.top = new FormAttachment (this.profileName, 10);
+        data.left = new FormAttachment (label, 10);
+        data.width = 300;
+        this.serverLocation = new Text (container, SWT.BORDER);
+        this.serverLocation.setLayoutData (data);
 
-        this.toolkit.createLabel (form.getBody (), "Username:");
-        Text txtboxUsername = this.toolkit.createText (form.getBody (), "");
-        txtboxUsername.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
-        txtboxUsername.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
+        data = new FormData ();
+        data.top = new FormAttachment (this.serverLocation, 10);
+        data.width = 100;
+        label = new Label (container, SWT.NULL);
+        label.setText ("Username: ");
+        label.setLayoutData (data);
 
-        this.toolkit.createLabel (form.getBody (), "Password:");
-        Text txtboxPassword = this.toolkit.createText (form.getBody (), "", SWT.PASSWORD);
-        txtboxPassword.setLayoutData (new GridData (GridData.FILL_HORIZONTAL));
-        txtboxPassword.setData (FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
+        data = new FormData ();
+        data.top = new FormAttachment (this.serverLocation, 10);
+        data.left = new FormAttachment (label, 10);
+        data.width = 300;
+        this.username = new Text (container, SWT.BORDER);
+        this.username.setLayoutData (data);
 
-        this.toolkit.paintBordersFor (form.getBody ());
-        setControl (parent);
-    }
+        data = new FormData ();
+        data.top = new FormAttachment (this.username, 10);
+        data.width = 100;
+        label = new Label (container, SWT.NULL);
+        label.setText ("Password: ");
+        label.setLayoutData (data);
 
+        data = new FormData ();
+        data.top = new FormAttachment (this.username, 10);
+        data.left = new FormAttachment (label, 10);
+        data.width = 300;
+        this.password = new Text (container, SWT.BORDER | SWT.PASSWORD);
+        this.password.setLayoutData (data);
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
-     */
-    public void setFocus() {
-        this.form.setFocus ();
+        setControl (container);
     }
 
 
     /**
      * Cleanup!
      */
+    @Override
     public void dispose() {
-        this.toolkit.dispose ();
         super.dispose ();
     }
 
@@ -139,10 +149,102 @@ public class ConnectionProfilePage extends WizardPage {
 
 
     /**
-     * @return the form
+     * This is called when the wizard finishes off walking-thru the user.
      */
-    public ScrolledForm getForm() {
-        return form;
+    public void finish() {
+        // populate the connection profile model
+        this.connectionProfileData.setId (getProfileName ());
+        this.connectionProfileData.setLabel (getProfileName ());
+        this.connectionProfileData.setConnectionUrl (getServerLocation ());
+        this.connectionProfileData.setUsername (getUsername ());
+        this.connectionProfileData.setPassword (getPassword ());
+    }
+
+
+    /**
+     * @return the connectionProfileData
+     */
+    public ConnectionProfileData getConnectionProfileData() {
+        return this.connectionProfileData;
+    }
+
+
+    /**
+     * @param connectionProfileData
+     *            the connectionProfileData to set
+     * @deprecated <em>Experimental</em>
+     */
+    @Deprecated
+    public void setConnectionProfileData(ConnectionProfileData connectionProfileData) {
+        this.connectionProfileData = connectionProfileData;
+    }
+
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return this.password.getText ();
+    }
+
+
+    /**
+     * @param password
+     *            the password to set
+     */
+    public void setPassword(String v) {
+        this.password.setText (v);
+    }
+
+
+    /**
+     * @return the profileName
+     */
+    public String getProfileName() {
+        return this.profileName.getText ();
+    }
+
+
+    /**
+     * @param v
+     *            the profileName to set
+     */
+    public void setProfileName(String v) {
+        this.profileName.setText (v);
+    }
+
+
+    /**
+     * @return the serverLocation
+     */
+    public String getServerLocation() {
+        return this.serverLocation.getText ();
+    }
+
+
+    /**
+     * @param v
+     *            the serverLocation to set
+     */
+    public void setServerLocation(String v) {
+        this.serverLocation.setText (v);
+    }
+
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return this.username.getText ();
+    }
+
+
+    /**
+     * @param v
+     *            the username to set
+     */
+    public void setUsername(String v) {
+        this.username.setText (v);
     }
 
 }

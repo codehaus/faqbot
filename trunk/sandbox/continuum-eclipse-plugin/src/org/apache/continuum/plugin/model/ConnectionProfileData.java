@@ -16,15 +16,20 @@
 package org.apache.continuum.plugin.model;
 
 /**
- * Encapsulates User preferences that define the connection to a remote
- * Continuum instance.
+ * Model that captures user preferences to set up a connection profile to a
+ * remote Continuum instance.
+ * <p>
+ * TODO: Override <code>equals()</code> method to allow for checking of
+ * duplicates based on profile name.
  * 
  * @author <a href='mailto:rahul.thakur.xdev@gmail.com'>Rahul Thakur</a>
  */
-public class ConnectionProfile {
+public class ConnectionProfileData {
 
     /**
      * Profile Identifier.
+     * <p>
+     * TODO: We should make this a surrogate key.
      */
     private String id;
 
@@ -54,7 +59,7 @@ public class ConnectionProfile {
      * @return the connectionUrl
      */
     public String getConnectionUrl() {
-        return connectionUrl;
+        return this.connectionUrl;
     }
 
 
@@ -71,7 +76,7 @@ public class ConnectionProfile {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
 
@@ -88,7 +93,7 @@ public class ConnectionProfile {
      * @return the label
      */
     public String getLabel() {
-        return label;
+        return this.label;
     }
 
 
@@ -105,7 +110,7 @@ public class ConnectionProfile {
      * @return the password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
 
@@ -122,7 +127,7 @@ public class ConnectionProfile {
      * @return the username
      */
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
 
