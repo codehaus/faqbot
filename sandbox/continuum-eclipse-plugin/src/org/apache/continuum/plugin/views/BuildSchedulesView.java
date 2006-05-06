@@ -94,7 +94,7 @@ public class BuildSchedulesView extends ViewPart {
 
 
         public String getName() {
-            return name;
+            return this.name;
         }
 
 
@@ -104,10 +104,11 @@ public class BuildSchedulesView extends ViewPart {
 
 
         public TreeParent getParent() {
-            return parent;
+            return this.parent;
         }
 
 
+        @Override
         public String toString() {
             return getName ();
         }
@@ -125,29 +126,29 @@ public class BuildSchedulesView extends ViewPart {
 
         public TreeParent(String name) {
             super (name);
-            children = new ArrayList ();
+            this.children = new ArrayList ();
         }
 
 
         public void addChild(TreeObject child) {
-            children.add (child);
+            this.children.add (child);
             child.setParent (this);
         }
 
 
         public void removeChild(TreeObject child) {
-            children.remove (child);
+            this.children.remove (child);
             child.setParent (null);
         }
 
 
         public TreeObject [] getChildren() {
-            return (TreeObject []) children.toArray (new TreeObject[children.size ()]);
+            return (TreeObject []) this.children.toArray (new TreeObject[this.children.size ()]);
         }
 
 
         public boolean hasChildren() {
-            return children.size () > 0;
+            return this.children.size () > 0;
         }
     }
 
@@ -164,9 +165,9 @@ public class BuildSchedulesView extends ViewPart {
 
         public Object [] getElements(Object parent) {
             if (parent.equals (getViewSite ())) {
-                if (invisibleRoot == null)
+                if (this.invisibleRoot == null)
                     initialize ();
-                return getChildren (invisibleRoot);
+                return getChildren (this.invisibleRoot);
             }
             return getChildren (parent);
         }
@@ -212,18 +213,20 @@ public class BuildSchedulesView extends ViewPart {
             root.addChild (p1);
             root.addChild (p2);
 
-            invisibleRoot = new TreeParent ("");
-            invisibleRoot.addChild (root);
+            this.invisibleRoot = new TreeParent ("");
+            this.invisibleRoot.addChild (root);
         }
     }
 
     class ViewLabelProvider extends LabelProvider {
 
+        @Override
         public String getText(Object obj) {
             return obj.toString ();
         }
 
 
+        @Override
         public Image getImage(Object obj) {
             String imageKey = ISharedImages.IMG_OBJ_ELEMENT;
             if (obj instanceof TreeParent)
@@ -245,13 +248,14 @@ public class BuildSchedulesView extends ViewPart {
      * This is a callback that will allow us to create the viewer and initialize
      * it.
      */
+    @Override
     public void createPartControl(Composite parent) {
-        viewer = new TreeViewer (parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-        drillDownAdapter = new DrillDownAdapter (viewer);
-        viewer.setContentProvider (new ViewContentProvider ());
-        viewer.setLabelProvider (new ViewLabelProvider ());
-        viewer.setSorter (new NameSorter ());
-        viewer.setInput (getViewSite ());
+        this.viewer = new TreeViewer (parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+        this.drillDownAdapter = new DrillDownAdapter (this.viewer);
+        this.viewer.setContentProvider (new ViewContentProvider ());
+        this.viewer.setLabelProvider (new ViewLabelProvider ());
+        this.viewer.setSorter (new NameSorter ());
+        this.viewer.setInput (getViewSite ());
         makeActions ();
         hookContextMenu ();
         hookDoubleClickAction ();
@@ -268,9 +272,9 @@ public class BuildSchedulesView extends ViewPart {
                 BuildSchedulesView.this.fillContextMenu (manager);
             }
         });
-        Menu menu = menuMgr.createContextMenu (viewer.getControl ());
-        viewer.getControl ().setMenu (menu);
-        getSite ().registerContextMenu (menuMgr, viewer);
+        Menu menu = menuMgr.createContextMenu (this.viewer.getControl ());
+        this.viewer.getControl ().setMenu (menu);
+        getSite ().registerContextMenu (menuMgr, this.viewer);
     }
 
 
@@ -282,54 +286,57 @@ public class BuildSchedulesView extends ViewPart {
 
 
     private void fillLocalPullDown(IMenuManager manager) {
-        manager.add (action1);
+        manager.add (this.action1);
         manager.add (new Separator ());
-        manager.add (action2);
+        manager.add (this.action2);
     }
 
 
     private void fillContextMenu(IMenuManager manager) {
-        manager.add (action1);
-        manager.add (action2);
+        manager.add (this.action1);
+        manager.add (this.action2);
         manager.add (new Separator ());
-        drillDownAdapter.addNavigationActions (manager);
+        this.drillDownAdapter.addNavigationActions (manager);
         // Other plug-ins can contribute there actions here
         manager.add (new Separator (IWorkbenchActionConstants.MB_ADDITIONS));
     }
 
 
     private void fillLocalToolBar(IToolBarManager manager) {
-        manager.add (action1);
-        manager.add (action2);
+        manager.add (this.action1);
+        manager.add (this.action2);
         manager.add (new Separator ());
-        drillDownAdapter.addNavigationActions (manager);
+        this.drillDownAdapter.addNavigationActions (manager);
     }
 
 
     private void makeActions() {
-        action1 = new Action () {
+        this.action1 = new Action () {
 
+            @Override
             public void run() {
                 showMessage ("Action 1 executed");
             }
         };
-        action1.setText ("Action 1");
-        action1.setToolTipText ("Action 1 tooltip");
-        action1.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
+        this.action1.setText ("Action 1");
+        this.action1.setToolTipText ("Action 1 tooltip");
+        this.action1.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
 
-        action2 = new Action () {
+        this.action2 = new Action () {
 
+            @Override
             public void run() {
                 showMessage ("Action 2 executed");
             }
         };
-        action2.setText ("Action 2");
-        action2.setToolTipText ("Action 2 tooltip");
-        action2.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
-        doubleClickAction = new Action () {
+        this.action2.setText ("Action 2");
+        this.action2.setToolTipText ("Action 2 tooltip");
+        this.action2.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
+        this.doubleClickAction = new Action () {
 
+            @Override
             public void run() {
-                ISelection selection = viewer.getSelection ();
+                ISelection selection = BuildSchedulesView.this.viewer.getSelection ();
                 Object obj = ((IStructuredSelection) selection).getFirstElement ();
                 showMessage ("Double-click detected on " + obj.toString ());
             }
@@ -338,24 +345,25 @@ public class BuildSchedulesView extends ViewPart {
 
 
     private void hookDoubleClickAction() {
-        viewer.addDoubleClickListener (new IDoubleClickListener () {
+        this.viewer.addDoubleClickListener (new IDoubleClickListener () {
 
             public void doubleClick(DoubleClickEvent event) {
-                doubleClickAction.run ();
+                BuildSchedulesView.this.doubleClickAction.run ();
             }
         });
     }
 
 
     private void showMessage(String message) {
-        MessageDialog.openInformation (viewer.getControl ().getShell (), "Projects View", message);
+        MessageDialog.openInformation (this.viewer.getControl ().getShell (), "Projects View", message);
     }
 
 
     /**
      * Passing the focus request to the viewer's control.
      */
+    @Override
     public void setFocus() {
-        viewer.getControl ().setFocus ();
+        this.viewer.getControl ().setFocus ();
     }
 }
