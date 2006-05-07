@@ -79,52 +79,95 @@ public class ConnectionProfilePage extends WizardPage {
         data.top = new FormAttachment (10, 10);
         data.left = new FormAttachment (label, 10);
         data.width = 300;
-        this.profileName = new Text (container, SWT.BORDER);
-        this.profileName.setLayoutData (data);
+        profileName = new Text (container, SWT.BORDER);
+        profileName.setLayoutData (data);
 
         data = new FormData ();
-        data.top = new FormAttachment (this.profileName, 10);
+        data.top = new FormAttachment (profileName, 10);
         data.width = 100;
         label = new Label (container, SWT.NULL);
         label.setText ("Server Location: ");
         label.setLayoutData (data);
 
         data = new FormData ();
-        data.top = new FormAttachment (this.profileName, 10);
+        data.top = new FormAttachment (profileName, 10);
         data.left = new FormAttachment (label, 10);
         data.width = 300;
-        this.serverLocation = new Text (container, SWT.BORDER);
-        this.serverLocation.setLayoutData (data);
+        serverLocation = new Text (container, SWT.BORDER);
+        serverLocation.setLayoutData (data);
 
         data = new FormData ();
-        data.top = new FormAttachment (this.serverLocation, 10);
+        data.top = new FormAttachment (serverLocation, 10);
         data.width = 100;
         label = new Label (container, SWT.NULL);
         label.setText ("Username: ");
         label.setLayoutData (data);
 
         data = new FormData ();
-        data.top = new FormAttachment (this.serverLocation, 10);
+        data.top = new FormAttachment (serverLocation, 10);
         data.left = new FormAttachment (label, 10);
         data.width = 300;
-        this.username = new Text (container, SWT.BORDER);
-        this.username.setLayoutData (data);
+        username = new Text (container, SWT.BORDER);
+        username.setLayoutData (data);
 
         data = new FormData ();
-        data.top = new FormAttachment (this.username, 10);
+        data.top = new FormAttachment (username, 10);
         data.width = 100;
         label = new Label (container, SWT.NULL);
         label.setText ("Password: ");
         label.setLayoutData (data);
 
         data = new FormData ();
-        data.top = new FormAttachment (this.username, 10);
+        data.top = new FormAttachment (username, 10);
         data.left = new FormAttachment (label, 10);
         data.width = 300;
-        this.password = new Text (container, SWT.BORDER | SWT.PASSWORD);
-        this.password.setLayoutData (data);
+        password = new Text (container, SWT.BORDER | SWT.PASSWORD);
+        password.setLayoutData (data);
+
+        // populate the form with initial values from the model.
+        updateFormFieldValues ();
 
         setControl (container);
+    }
+
+
+    /**
+     * Populates the form fields from the Model instance.
+     */
+    private void updateFormFieldValues() {
+        profileName.setText (null == connectionProfileData.getLabel () ? "" : connectionProfileData.getLabel ());
+        serverLocation.setText (null == connectionProfileData.getConnectionUrl () ? "" : connectionProfileData.getConnectionUrl ());
+        username.setText (null == connectionProfileData.getUsername () ? "" : connectionProfileData.getUsername ());
+        password.setText (null == connectionProfileData.getPassword () ? "" : connectionProfileData.getPassword ());
+    }
+
+
+    /**
+     * Obtains the values from the Form fields and updates the model instance.
+     */
+    private void updateModel() {
+        connectionProfileData.setId (getProfileName ());
+        connectionProfileData.setLabel (getProfileName ());
+        connectionProfileData.setConnectionUrl (getServerLocation ());
+        connectionProfileData.setUsername (getUsername ());
+        connectionProfileData.setPassword (getPassword ());
+    }
+
+
+    /**
+     * Validates the form fields for valid values and other constraints (if
+     * any).
+     * 
+     * @return <code>true</code> if validation succeeded, else
+     *         <code>false</code> to indicate a validation failure.
+     */
+    public boolean validate() {
+        if (profileName.getText ().trim ().equals (""))
+            return false;
+        if (serverLocation.getText ().trim ().equals (""))
+            return false;
+
+        return true;
     }
 
 
@@ -153,11 +196,7 @@ public class ConnectionProfilePage extends WizardPage {
      */
     public void finish() {
         // populate the connection profile model
-        this.connectionProfileData.setId (getProfileName ());
-        this.connectionProfileData.setLabel (getProfileName ());
-        this.connectionProfileData.setConnectionUrl (getServerLocation ());
-        this.connectionProfileData.setUsername (getUsername ());
-        this.connectionProfileData.setPassword (getPassword ());
+        updateModel ();
     }
 
 
@@ -165,7 +204,7 @@ public class ConnectionProfilePage extends WizardPage {
      * @return the connectionProfileData
      */
     public ConnectionProfileData getConnectionProfileData() {
-        return this.connectionProfileData;
+        return connectionProfileData;
     }
 
 
@@ -184,7 +223,7 @@ public class ConnectionProfilePage extends WizardPage {
      * @return the password
      */
     public String getPassword() {
-        return this.password.getText ();
+        return password.getText ();
     }
 
 
@@ -193,7 +232,7 @@ public class ConnectionProfilePage extends WizardPage {
      *            the password to set
      */
     public void setPassword(String v) {
-        this.password.setText (v);
+        password.setText (v);
     }
 
 
@@ -201,7 +240,7 @@ public class ConnectionProfilePage extends WizardPage {
      * @return the profileName
      */
     public String getProfileName() {
-        return this.profileName.getText ();
+        return profileName.getText ();
     }
 
 
@@ -210,7 +249,7 @@ public class ConnectionProfilePage extends WizardPage {
      *            the profileName to set
      */
     public void setProfileName(String v) {
-        this.profileName.setText (v);
+        profileName.setText (v);
     }
 
 
@@ -218,7 +257,7 @@ public class ConnectionProfilePage extends WizardPage {
      * @return the serverLocation
      */
     public String getServerLocation() {
-        return this.serverLocation.getText ();
+        return serverLocation.getText ();
     }
 
 
@@ -227,7 +266,7 @@ public class ConnectionProfilePage extends WizardPage {
      *            the serverLocation to set
      */
     public void setServerLocation(String v) {
-        this.serverLocation.setText (v);
+        serverLocation.setText (v);
     }
 
 
@@ -235,7 +274,7 @@ public class ConnectionProfilePage extends WizardPage {
      * @return the username
      */
     public String getUsername() {
-        return this.username.getText ();
+        return username.getText ();
     }
 
 
@@ -244,7 +283,7 @@ public class ConnectionProfilePage extends WizardPage {
      *            the username to set
      */
     public void setUsername(String v) {
-        this.username.setText (v);
+        username.setText (v);
     }
 
 }

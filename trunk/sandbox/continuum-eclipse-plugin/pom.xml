@@ -59,6 +59,11 @@
 			<artifactId>wstx-asl</artifactId>
 			<version>2.9.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-utils</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
