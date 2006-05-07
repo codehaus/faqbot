@@ -15,11 +15,17 @@
  */
 package org.apache.continuum.plugin.wizard;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import org.apache.continuum.plugin.Activator;
 import org.apache.continuum.plugin.internal.ConnectionProfileManager;
 import org.apache.continuum.plugin.model.ConnectionProfileData;
+import org.apache.maven.continuum.model.project.Project;
+import org.apache.maven.continuum.rpc.ProjectsReader;
+import org.apache.xmlrpc.XmlRpcException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -141,15 +147,47 @@ public class CreateConnectionProfileWizard extends Wizard implements INewWizard 
             MessageDialog.openError (getShell (), "Error", "Profile with name '" + connectionProfileData.getLabel () + "' already exists.");
         }
 
-        Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, "Saving Connection profile: " + connectionProfileData.getLabel (), null));
-        // TODO: Run a create profile operation here
+        // Attempt to test connect to the specified continuum server before
+        // saving the profile.
         try {
+            testConnection ();
+            Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, "Saving Connection profile: " + connectionProfileData.getLabel (), null));
+            // TODO: Run a create profile operation here
             ConnectionProfileManager.saveConnectionProfile (connectionProfileData);
         } catch (CoreException e) {
-            MessageDialog.openError (getShell (), "Error", e.getCause ().getMessage ());
+            MessageDialog.openError (getShell (), "Error", e.getMessage ());
         }
 
+        MessageDialog.openInformation (getShell (), "Success", "Connection to Continuum was successful. Profile '" + connectionProfileData.getLabel () + "' saved!");
         return true;
+    }
+
+
+    /**
+     * Ping test to the remote continuum instance.
+     * <p>
+     * FIXME: Update implemenatation when we have <b>Ping</b> and <b>Login</b>
+     * XML-RPC service available in Continuum.
+     * 
+     * @throws CoreException
+     *             if there was an error connection to the specified Continuum
+     *             Server.
+     */
+    private void testConnection() throws CoreException {
+        ProjectsReader pr = null;
+        try {
+            pr = new ProjectsReader (new URL (this.connectionProfileData.getConnectionUrl ()));
+            Project [] projects = null;
+            projects = pr.readProjects ();
+        } catch (MalformedURLException e) {
+            throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, 0, e.getLocalizedMessage (), e));
+        } catch (XmlRpcException e) {
+            throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, 0, e.getLocalizedMessage (), e));
+        } catch (IOException e) {
+            throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, 0, e.getLocalizedMessage (), e));
+        } finally {
+            // cleanup!
+        }
     }
 
 }
