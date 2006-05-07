@@ -40,6 +40,8 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.continuum.plugin.Activator;
 import org.apache.continuum.plugin.model.ConnectionProfileData;
+import org.codehaus.plexus.util.xml.PrettyPrintXMLWriter;
+import org.codehaus.plexus.util.xml.XMLWriter;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -52,6 +54,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  * Continuum's Connection profile manager.
@@ -117,18 +120,17 @@ public class ConnectionProfileManager {
      *         parsed from the XML store.
      */
     public static List<ConnectionProfileData> loadConnectionProfiles() throws CoreException {
-        Assert.isNotNull (storageLocation);
+        Assert.isNotNull (storageLocation);        
         List<ConnectionProfileData> list = new ArrayList<ConnectionProfileData> ();
         File file = storageLocation.toFile ();
         try {
             // return empty list if no file existed.
             if (!file.exists ()) {
-                Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, " No Continuum Connection profiles were found to be loaded.", null));
+                Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, "No Continuum Connection profiles were found to be loaded.", null));
                 return list;
             }
             InputStream is = new FileInputStream (file);
             InputSource source = new InputSource (is);
-            source.setEncoding ("UTF8"); //$NON-NLS-1$
             Document document = getDocumentBuilder ().parse (source);
 
             // obtain profiles from xml
@@ -150,10 +152,10 @@ public class ConnectionProfileManager {
             Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, "Loaded '" + list.size () + "' Continuum Connection profiles.", null));
         } catch (FileNotFoundException e) {
             throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encounterd FileNotFoundException.", e));//$NON-NLS-1$
-        } catch (SAXException e) {
-            throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encounterd SAXException.", e));//$NON-NLS-1$
         } catch (IOException e) {
             throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encounterd IOException.", e));//$NON-NLS-1$
+        } catch (SAXException e) {
+            throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encounterd SAXException.", e));//$NON-NLS-1$
         }
         return list;
     }
