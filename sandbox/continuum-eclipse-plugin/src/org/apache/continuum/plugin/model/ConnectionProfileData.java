@@ -59,7 +59,7 @@ public class ConnectionProfileData {
      * @return the connectionUrl
      */
     public String getConnectionUrl() {
-        return this.connectionUrl;
+        return connectionUrl;
     }
 
 
@@ -76,7 +76,7 @@ public class ConnectionProfileData {
      * @return the id
      */
     public String getId() {
-        return this.id;
+        return id;
     }
 
 
@@ -93,7 +93,7 @@ public class ConnectionProfileData {
      * @return the label
      */
     public String getLabel() {
-        return this.label;
+        return label;
     }
 
 
@@ -110,7 +110,7 @@ public class ConnectionProfileData {
      * @return the password
      */
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
 
@@ -127,7 +127,7 @@ public class ConnectionProfileData {
      * @return the username
      */
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
 

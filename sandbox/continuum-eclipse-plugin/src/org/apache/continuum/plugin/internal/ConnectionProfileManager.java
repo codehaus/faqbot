@@ -91,34 +91,47 @@ public class ConnectionProfileManager {
      */
     private static IPath storageLocation = Activator.getDefault ().getStateLocation ().append (DATA_PROFILES);
 
+    /**
+     * XML Document builder to create new XML document or parse an existing one.
+     */
     private static DocumentBuilder documentBuilder;
 
+    /**
+     * Factory that creates and returns an instance of a {@link DocumentBuilder}
+     * implementation.
+     */
     private static DocumentBuilderFactory documentBuilderFactory;
 
     private static Transformer transformer;
 
+    /**
+     * Factory to create an instance of XML Transformer
+     */
     private static TransformerFactory transFactory;
 
 
     /**
      * Loads up all the Continuum Connection profiles from the specified file.
      * 
-     * @return
+     * @return {@link List} of {@link ConnectionProfileData} instances that were
+     *         parsed from the XML store.
      */
     public static List<ConnectionProfileData> loadConnectionProfiles() throws CoreException {
         Assert.isNotNull (storageLocation);
         List<ConnectionProfileData> list = new ArrayList<ConnectionProfileData> ();
         File file = storageLocation.toFile ();
-        // return empty list if no file existed.
-        if (!file.exists ()) {
-            Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, " No Continuum Connection profiles were found to be loaded.", null));
-            return list;
-        }
         try {
+            // return empty list if no file existed.
+            if (!file.exists ()) {
+                Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, " No Continuum Connection profiles were found to be loaded.", null));
+                return list;
+            }
             InputStream is = new FileInputStream (file);
             InputSource source = new InputSource (is);
             source.setEncoding ("UTF8"); //$NON-NLS-1$
             Document document = getDocumentBuilder ().parse (source);
+
+            // obtain profiles from xml
             NodeList nl = document.getElementsByTagName (ELT_PROFILE);
             for (int i = 0; i < nl.getLength (); i++) {
                 Node node = nl.item (i);
@@ -147,7 +160,7 @@ public class ConnectionProfileManager {
 
 
     /**
-     * Serializes the Connection Profile to a persistence store.
+     * Serializes the Connection Profile to a XML-based persistence store.
      * 
      * @param cp
      *            {@link {@link ConnectionProfileData}} instance to serialize.
@@ -156,12 +169,14 @@ public class ConnectionProfileManager {
         Writer writer = null;
         try {
             Assert.isNotNull (storageLocation);
-            Document document = getDocumentBuilder ().newDocument ();
+            Document document = null;
             Element rootElt = null;
             File file = storageLocation.toFile ();
             if (!file.exists ()) {
                 file.createNewFile ();
+                document = getDocumentBuilder ().newDocument ();
             } else {
+                document = getDocumentBuilder ().parse (file);
                 // Attempt to obtain the root element if the file is existing.
                 NodeList nl = document.getElementsByTagName (ELT_CONTINUUM_PROFILES);
                 for (int i = 0; i < nl.getLength (); i++) {
@@ -196,8 +211,8 @@ public class ConnectionProfileManager {
 
             DOMSource domSource = new DOMSource (document);
             StreamResult result = new StreamResult (osWriter);
-
             getTransformer ().transform (domSource, result);
+
             Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, "Profile saved to : " + file.getAbsolutePath (), null));
         } catch (DOMException e) {
             throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encountered DOMException.", e));//$NON-NLS-1$
@@ -205,6 +220,8 @@ public class ConnectionProfileManager {
             throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encounterd IOException.", e));//$NON-NLS-1$
         } catch (TransformerException e) {
             throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encountered TransformerException.", e));//$NON-NLS-1$
+        } catch (SAXException e) {
+            throw new CoreException (new Status (IStatus.ERROR, Activator.PLUGIN_ID, -1, "Encountered SAXException. Unable to parse profiles.", e));//$NON-NLS-1$
         } finally {
             if (null != writer)
                 try {

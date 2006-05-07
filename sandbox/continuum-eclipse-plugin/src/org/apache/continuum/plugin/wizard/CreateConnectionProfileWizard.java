@@ -89,16 +89,16 @@ public class CreateConnectionProfileWizard extends Wizard implements INewWizard 
         // obtain section specific to continuum settings
         IDialogSettings section = wbSettings.getSection (DIALOG_SETTINGS_KEY);
         if (null != section) {
-            this.newConnectionSettings = false;
+            newConnectionSettings = false;
         } else {
-            this.newConnectionSettings = true;
+            newConnectionSettings = true;
             setDialogSettings (section);
         }
     }
 
 
     public void init(IWorkbench workbench, IStructuredSelection selection) {
-        this.connectionProfileData = new ConnectionProfileData ();
+        connectionProfileData = new ConnectionProfileData ();
         setWindowTitle ("Create New Continuumm Connection");
         // we need a progress monitor if the wizard will attempt to connect to
         // the specified Continuum Server.
@@ -111,27 +111,40 @@ public class CreateConnectionProfileWizard extends Wizard implements INewWizard 
     @Override
     public void addPages() {
         super.addPages ();
-        this.connectionProfilePage = new ConnectionProfilePage ("Create Continuum Connection Profile", this.connectionProfileData);
-        addPage (this.connectionProfilePage);
+        connectionProfilePage = new ConnectionProfilePage ("Create Continuum Connection Profile", connectionProfileData);
+        addPage (connectionProfilePage);
     }
 
 
     @Override
     public boolean performFinish() {
-        // TODO: Implement a check if a profile with same name exists.
-
         // delegate to wrapped up pages to finish off.
         IWizardPage [] pages = getPages ();
         for (int i = 0; i < getPageCount (); i++) {
             IWizardPage page = pages[i];
-            if (page instanceof ConnectionProfilePage)
-                ((ConnectionProfilePage) page).finish ();
+            if (page instanceof ConnectionProfilePage) {
+                // we allow the wizard to finish only if the user supplied
+                // validated values.
+                ConnectionProfilePage cpPage = ((ConnectionProfilePage) page);
+                if (cpPage.validate ())
+                    cpPage.finish ();
+                else {
+                    MessageDialog.openError (getShell (), "Error", "Missing form fields.");
+                    return false;
+                }
+            }
         }
 
-        Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, "Saving Connection profile: " + this.connectionProfileData.getLabel (), null));
+        if (existingConnectionProfiles.contains (connectionProfileData)) {
+            // TODO: Implement a check if a profile with same name exists. Need
+            // to override equals().
+            MessageDialog.openError (getShell (), "Error", "Profile with name '" + connectionProfileData.getLabel () + "' already exists.");
+        }
+
+        Activator.getDefault ().getLog ().log (new Status (IStatus.INFO, Activator.PLUGIN_ID, 0, "Saving Connection profile: " + connectionProfileData.getLabel (), null));
         // TODO: Run a create profile operation here
         try {
-            ConnectionProfileManager.saveConnectionProfile (this.connectionProfileData);
+            ConnectionProfileManager.saveConnectionProfile (connectionProfileData);
         } catch (CoreException e) {
             MessageDialog.openError (getShell (), "Error", e.getCause ().getMessage ());
         }

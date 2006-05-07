@@ -95,7 +95,7 @@ public class ProjectBuildsView extends ViewPart {
 
 
         public String getName() {
-            return this.name;
+            return name;
         }
 
 
@@ -105,7 +105,7 @@ public class ProjectBuildsView extends ViewPart {
 
 
         public TreeParent getParent() {
-            return this.parent;
+            return parent;
         }
 
 
@@ -127,29 +127,29 @@ public class ProjectBuildsView extends ViewPart {
 
         public TreeParent(String name) {
             super (name);
-            this.children = new ArrayList ();
+            children = new ArrayList ();
         }
 
 
         public void addChild(TreeObject child) {
-            this.children.add (child);
+            children.add (child);
             child.setParent (this);
         }
 
 
         public void removeChild(TreeObject child) {
-            this.children.remove (child);
+            children.remove (child);
             child.setParent (null);
         }
 
 
         public TreeObject [] getChildren() {
-            return (TreeObject []) this.children.toArray (new TreeObject[this.children.size ()]);
+            return (TreeObject []) children.toArray (new TreeObject[children.size ()]);
         }
 
 
         public boolean hasChildren() {
-            return this.children.size () > 0;
+            return children.size () > 0;
         }
     }
 
@@ -166,9 +166,9 @@ public class ProjectBuildsView extends ViewPart {
 
         public Object [] getElements(Object parent) {
             if (parent.equals (getViewSite ())) {
-                if (this.invisibleRoot == null)
+                if (invisibleRoot == null)
                     initialize ();
-                return getChildren (this.invisibleRoot);
+                return getChildren (invisibleRoot);
             }
             return getChildren (parent);
         }
@@ -214,8 +214,8 @@ public class ProjectBuildsView extends ViewPart {
             root.addChild (p1);
             root.addChild (p2);
 
-            this.invisibleRoot = new TreeParent ("");
-            this.invisibleRoot.addChild (root);
+            invisibleRoot = new TreeParent ("");
+            invisibleRoot.addChild (root);
         }
     }
 
@@ -251,12 +251,12 @@ public class ProjectBuildsView extends ViewPart {
      */
     @Override
     public void createPartControl(Composite parent) {
-        this.viewer = new TreeViewer (parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-        this.drillDownAdapter = new DrillDownAdapter (this.viewer);
-        this.viewer.setContentProvider (new ViewContentProvider ());
-        this.viewer.setLabelProvider (new ViewLabelProvider ());
-        this.viewer.setSorter (new NameSorter ());
-        this.viewer.setInput (getViewSite ());
+        viewer = new TreeViewer (parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+        drillDownAdapter = new DrillDownAdapter (viewer);
+        viewer.setContentProvider (new ViewContentProvider ());
+        viewer.setLabelProvider (new ViewLabelProvider ());
+        viewer.setSorter (new NameSorter ());
+        viewer.setInput (getViewSite ());
         makeActions ();
         hookContextMenu ();
         hookDoubleClickAction ();
@@ -273,9 +273,9 @@ public class ProjectBuildsView extends ViewPart {
                 ProjectBuildsView.this.fillContextMenu (manager);
             }
         });
-        Menu menu = menuMgr.createContextMenu (this.viewer.getControl ());
-        this.viewer.getControl ().setMenu (menu);
-        getSite ().registerContextMenu (menuMgr, this.viewer);
+        Menu menu = menuMgr.createContextMenu (viewer.getControl ());
+        viewer.getControl ().setMenu (menu);
+        getSite ().registerContextMenu (menuMgr, viewer);
     }
 
 
@@ -287,57 +287,57 @@ public class ProjectBuildsView extends ViewPart {
 
 
     private void fillLocalPullDown(IMenuManager manager) {
-        manager.add (this.action1);
+        manager.add (action1);
         manager.add (new Separator ());
-        manager.add (this.action2);
+        manager.add (action2);
     }
 
 
     private void fillContextMenu(IMenuManager manager) {
-        manager.add (this.action1);
-        manager.add (this.action2);
+        manager.add (action1);
+        manager.add (action2);
         manager.add (new Separator ());
-        this.drillDownAdapter.addNavigationActions (manager);
+        drillDownAdapter.addNavigationActions (manager);
         // Other plug-ins can contribute there actions here
         manager.add (new Separator (IWorkbenchActionConstants.MB_ADDITIONS));
     }
 
 
     private void fillLocalToolBar(IToolBarManager manager) {
-        manager.add (this.action1);
-        manager.add (this.action2);
+        manager.add (action1);
+        manager.add (action2);
         manager.add (new Separator ());
-        this.drillDownAdapter.addNavigationActions (manager);
+        drillDownAdapter.addNavigationActions (manager);
     }
 
 
     private void makeActions() {
-        this.action1 = new Action () {
+        action1 = new Action () {
 
             @Override
             public void run() {
                 showMessage ("Action 1 executed");
             }
         };
-        this.action1.setText ("Action 1");
-        this.action1.setToolTipText ("Action 1 tooltip");
-        this.action1.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
+        action1.setText ("Action 1");
+        action1.setToolTipText ("Action 1 tooltip");
+        action1.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
 
-        this.action2 = new Action () {
+        action2 = new Action () {
 
             @Override
             public void run() {
                 showMessage ("Action 2 executed");
             }
         };
-        this.action2.setText ("Action 2");
-        this.action2.setToolTipText ("Action 2 tooltip");
-        this.action2.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
-        this.doubleClickAction = new Action () {
+        action2.setText ("Action 2");
+        action2.setToolTipText ("Action 2 tooltip");
+        action2.setImageDescriptor (PlatformUI.getWorkbench ().getSharedImages ().getImageDescriptor (ISharedImages.IMG_OBJS_INFO_TSK));
+        doubleClickAction = new Action () {
 
             @Override
             public void run() {
-                ISelection selection = ProjectBuildsView.this.viewer.getSelection ();
+                ISelection selection = viewer.getSelection ();
                 Object obj = ((IStructuredSelection) selection).getFirstElement ();
                 showMessage ("Double-click detected on " + obj.toString ());
             }
@@ -346,17 +346,17 @@ public class ProjectBuildsView extends ViewPart {
 
 
     private void hookDoubleClickAction() {
-        this.viewer.addDoubleClickListener (new IDoubleClickListener () {
+        viewer.addDoubleClickListener (new IDoubleClickListener () {
 
             public void doubleClick(DoubleClickEvent event) {
-                ProjectBuildsView.this.doubleClickAction.run ();
+                doubleClickAction.run ();
             }
         });
     }
 
 
     private void showMessage(String message) {
-        MessageDialog.openInformation (this.viewer.getControl ().getShell (), "Projects View", message);
+        MessageDialog.openInformation (viewer.getControl ().getShell (), "Projects View", message);
     }
 
 
@@ -365,6 +365,6 @@ public class ProjectBuildsView extends ViewPart {
      */
     @Override
     public void setFocus() {
-        this.viewer.getControl ().setFocus ();
+        viewer.getControl ().setFocus ();
     }
 }
