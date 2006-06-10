@@ -31,8 +31,7 @@ public class Runner {
 
     public static void main(String args[]) {
         AtomicAIMLDocumentGenerator aimlGenerator = new AtomicAIMLDocumentGeneratorImpl ();
-        KnowledgeSource source = new ConsoleKnowledgeSource ();
+        KnowledgeSource source = new FileKnowledgeSource ();
         Document aimlDoc = aimlGenerator.generateAIMLDocument (source);
-
     }
 }

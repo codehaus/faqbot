@@ -38,6 +38,11 @@ public class AIMLKnowledgeMap implements KnowledgeMap {
     }
 
 
+    public void addKnowledge(String question, String answer) {
+        knowledgeMap.put (question, answer);
+    }
+
+
     public String getKnowledge(String name) {
         return knowledgeMap.get (name);
     }
