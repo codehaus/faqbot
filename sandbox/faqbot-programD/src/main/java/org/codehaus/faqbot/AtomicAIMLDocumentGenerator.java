@@ -22,7 +22,7 @@ import org.w3c.dom.Document;
  * Defines the Atomic AIML Document generation.
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public interface AtomicAIMLDocumentGenerator {
 

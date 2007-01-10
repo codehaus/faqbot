@@ -22,10 +22,12 @@ import java.util.Set;
  * To fetch Knowledge aggregate.
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public interface KnowledgeMap {
 
+    public void addKnowledge(String question, String answer);
+    
     public String getKnowledge(String name);
 
 

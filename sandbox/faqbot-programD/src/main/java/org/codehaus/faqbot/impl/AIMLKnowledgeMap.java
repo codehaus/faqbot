@@ -26,7 +26,7 @@ import org.codehaus.faqbot.KnowledgeMap;
  * Concrete KnowledgeMap implementation
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public class AIMLKnowledgeMap implements KnowledgeMap {
 

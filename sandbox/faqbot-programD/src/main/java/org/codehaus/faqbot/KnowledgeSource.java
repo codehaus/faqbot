@@ -20,7 +20,7 @@ package org.codehaus.faqbot;
  * To fetch Knowledge from any source
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public interface KnowledgeSource {
 
