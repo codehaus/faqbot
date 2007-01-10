@@ -25,7 +25,7 @@ import org.w3c.dom.Document;
  * Bot instance.
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public class Runner {
 

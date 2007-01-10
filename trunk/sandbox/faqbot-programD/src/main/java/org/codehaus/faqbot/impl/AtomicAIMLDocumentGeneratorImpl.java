@@ -33,7 +33,7 @@ import org.w3c.dom.Element;
  * Concrete AIML Document generator implementation
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public class AtomicAIMLDocumentGeneratorImpl implements AtomicAIMLDocumentGenerator {
 

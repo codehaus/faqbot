@@ -20,7 +20,7 @@ package org.codehaus.faqbot;
  * Knowledge definition
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public interface Knowledge {
 

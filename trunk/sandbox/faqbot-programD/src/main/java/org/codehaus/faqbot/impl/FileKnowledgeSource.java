@@ -29,7 +29,7 @@ import org.codehaus.faqbot.KnowledgeSource;
  * Console KnowledgeSource inplementation
  * 
  * @author <a href='mailto:sebastianmohan@acm.org'>Sebastian Mohan</a>
- *         $Revision:...$
+ *         $Id:...$
  */
 public class FileKnowledgeSource implements KnowledgeSource {
 
